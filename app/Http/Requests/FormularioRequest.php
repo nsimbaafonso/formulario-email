@@ -25,7 +25,7 @@ class FormularioRequest extends FormRequest
             'nome' => 'required|string|max:100',
             'email' => 'required|email|max:150',
             'assunto' => 'required|string|max:150',
-            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imagem' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
             'mensagem' => 'required|string|max:1000',
         ];
     }
@@ -41,7 +41,7 @@ class FormularioRequest extends FormRequest
             'imagem.required' => 'O campo :attribute deve ser preenchido',
             'imagem.image' => 'O arquivo deve ser uma imagem.',
             'imagem.mimes' => 'A imagem deve estar em formato: jpeg, png, jpg ou gif.',
-            'imagem.max' => 'A imagem deve ter no máximo 2MB.',
+            'imagem.max' => 'A imagem deve ter no máximo 5MB.',
             'mensagem.required' => 'O campo :attribute deve ser preenchido',
         ];
     }
