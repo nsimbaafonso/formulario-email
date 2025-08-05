@@ -103,7 +103,7 @@
                         new jBox('Notice', {
                             content: 'Mensagem enviada com sucesso!',
                             color: 'green',
-                            autoClose: 5000,
+                            autoClose: 2000,
                             animation: 'zoomIn'
                         });
 
@@ -124,7 +124,7 @@
                         new jBox('Notice', {
                             content: msg,
                             color: 'red',
-                            autoClose: 5000,
+                            autoClose: 2000,
                             animation: 'zoomIn'
                         });
                     },
