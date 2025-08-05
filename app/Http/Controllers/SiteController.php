@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\FormularioRequest;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContatoEmail; // <- Corrigido o nome
+use App\Mail\ContatoEmail;
 
 class SiteController extends Controller
 {
@@ -21,7 +21,10 @@ class SiteController extends Controller
     public function enviar(FormularioRequest $request)
     {
         $dados = $request->validated();
-        $imagem = $request->file('imagem');
+        $imagem = null;
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $imagem = $request->file('imagem');
+        }
 
         $email = new ContatoEmail($dados, $imagem);
 
@@ -46,7 +49,10 @@ class SiteController extends Controller
     {
         try {
             $dados = $request->validated();
-            $imagem = $request->file('imagem');
+            $imagem = null;
+            if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+                $imagem = $request->file('imagem');
+            }
             $email = new ContatoEmail($dados, $imagem);
 
             Mail::to('testesemail56@gmail.com')->send($email);
