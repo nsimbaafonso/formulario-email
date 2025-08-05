@@ -14,6 +14,9 @@ class ContatoEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $dados;
+    public $imagem;
+
     /**
      * Create a new message instance.
      */
@@ -40,7 +43,10 @@ class ContatoEmail extends Mailable
     {
         return new Content(
             view: 'emails.contato',
-            with: ['dados' => $this->dados, 'imagem' => $this->imagem,],
+            with: [
+                'dados' => $this->dados,
+                'imagem' => $this->imagem,
+            ],
         );
     }
 
@@ -51,13 +57,15 @@ class ContatoEmail extends Mailable
      */
     public function attachments(): array
     {
-        if ($this->imagem) {
+        // Verifica se a imagem existe e é válida antes de anexar
+        if ($this->imagem && $this->imagem->isValid() && file_exists($this->imagem->getRealPath())) {
             return [
                 Attachment::fromPath($this->imagem->getRealPath())
                     ->as($this->imagem->getClientOriginalName())
                     ->withMime($this->imagem->getMimeType()),
             ];
         }
+
         return [];
     }
 }
