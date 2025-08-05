@@ -9,7 +9,7 @@ use App\Http\Controllers\SiteController;
 
 //Rotas do site
 Route::get("/", [SiteController::class, "index"])->name("site.index");
-Route::post("/", [SiteController::class, "enviar"])->name("site.enviar");
+Route::post("/enviar", [SiteController::class, "enviar"])->name("site.enviar");
 
 Route::get("/form-ajax", [SiteController::class, "indexAjax"])->name("site.indexAjax");
 Route::post("/enviar-ajax", [SiteController::class, "enviarAjax"])->name("site.enviarAjax");
